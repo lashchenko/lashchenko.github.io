@@ -41,11 +41,11 @@
             var lines = csv.value.split("\n");
 
             var res = '<table class="gridtable">';
-            for (var i = 0; i < lines.length; i++) {
+            for (var i = 0; i < lines.length-1; i++) {
                 var res = res + '<tr>';
                 var color = 170;
                 var parts = lines[i].split(",");
-                for (var j=0; j<parts.length-1; j++) {
+                for (var j=0; j<parts.length; j++) {
                     var style = 'style="background-color:hsl('+ color +',65%,75%);"';
                     var idattr = 'id="'+ id + '"'
                     var open = '<td ' + idattr + style + '>'
