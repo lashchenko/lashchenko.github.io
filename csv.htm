@@ -53,7 +53,7 @@
 
                     if (parts[j] == "MISSING") {
                         open = open + "<font color='#AD0000'><b>"
-                        close = close + "</b></font>"
+                        close = "</b></font>" + close
                     }
 
                     res = res + open + parts[j] + close;
