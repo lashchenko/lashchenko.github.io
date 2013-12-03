@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title>CSV VIEWER</title>
+
+    <style type="text/css">
+        table.gridtable {
+            font-family: verdana,arial,sans-serif;
+            font-size:12px;
+            color:#333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+        }
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+        textarea.full {
+            display:block;
+            width:100%;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function showMyCsv() {
+            var id = 101;
+            var parent=document.getElementById("out");
+            parent.innerHTML = ''
+
+            var csv=document.getElementById("csv");
+            var lines = csv.value.split("\n");
+
+            var res = '<table class="gridtable">';
+            for (var i = 0; i < lines.length; i++) {
+                var res = res + '<tr>';
+                var color = 170;
+                var parts = lines[i].split(",");
+                for (var j=0; j<parts.length-1; j++) {
+                    var style = 'style="background-color:hsl('+ color +',65%,75%);"';
+                    var idattr = 'id="'+ id + '"'
+                    var open = '<td ' + idattr + style + '>'
+                    var close = '</td>'
+
+                    if (parts[j] == "MISSING") {
+                        open = open + "<font color='#AD0000'><b>"
+                        close = close + "</b></font>"
+                    }
+
+                    res = res + open + parts[j] + close;
+                    color = color + 10;
+                    id = id + 1;
+                }
+                res = res + '</tr>';
+            }
+            res = res + '</table>'
+            parent.innerHTML = res;
+        }
+    </script>
+<body>
+
+    <center><h3>Paste your SCV in this text area and click outside or press tab.</h3></center>
+    <textarea id="csv" class="full" onChange="showMyCsv()"></textarea>
+    <div id="out">
+    </div>
+
+</body>
+</html>
