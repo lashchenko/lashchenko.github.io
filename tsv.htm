@@ -32,19 +32,23 @@
     </style>
 
     <script type="text/javascript">
-        function showMyCsv() {
+        function showMyTsv() {
             var id = 101;
             var parent=document.getElementById("out");
             parent.innerHTML = ''
 
-            var csv=document.getElementById("csv");
-            var lines = csv.value.split("\n");
+            var string=document.getElementById("tsv");
+            var lines = string.value.split('\n');
 
             var res = '<table class="gridtable">';
             for (var i = 0; i < lines.length; i++) {
                 var res = res + '<tr>';
                 var color = 170;
-                var parts = lines[i].split("\t");
+
+                var raw = lines[i];
+                var replaced = raw.replace(/[ ]{2,}/g, '\t');
+                var parts = replaced.split("\t");
+
                 for (var j=0; j<parts.length; j++) {
                     var style = 'style="background-color:hsl('+ color +',65%,75%);"';
                     var idattr = 'id="'+ id + '"'
@@ -68,8 +72,8 @@
     </script>
 <body>
 
-    <center><h3>Paste your SCV in this text area and click outside or press tab.</h3></center>
-    <textarea id="csv" class="full" onChange="showMyCsv()"></textarea>
+    <center><h3>Paste your TCV in this text area and click outside or press tab.</h3></center>
+    <textarea id="tsv" class="full" onChange="showMyTsv()"></textarea>
     <div id="out">
     </div>
 
