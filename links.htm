@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>links</title>
+    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <style>
+        body { margin: 0; background: #e8e8e8; }
+        div#autocaption { 
+          text-align: center;
+          padding: 2rem 0; 
+        }
+        div#autocaption > * { 
+          margin: 0; padding: 0;
+          width: 27%;
+          border: 7px solid white;
+          margin: 10px;
+          background: #fff;
+          display: inline-block;
+          box-shadow: 0 10px 8px -6px rgba(0,0,0,0.2); 
+        }
+        div#autocaption figure img { 
+          width: 100%; height: auto; 
+        }
+        div#autocaption figure figcaption { 
+          padding: 5px;
+          text-align: left;
+          color: #333;
+          font-family: Avenir, Arial, sans-serif; 
+        }
+        div#autocaption figure figcaption:first-letter { text-transform: uppercase; }
+        @media screen and (max-width: 600px) {
+            div#autocaption figure { width: 90%; }
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div class="board" id="autocaption"></div>
+        Tnx <a href="http://pagepeeker.com/free-thumbnails/">PagePeeker.com Free Thumbnails</a> and <a href="http://demosthenes.info/blog/834/Auto-Generate-Image-Captions-With-Progressive-JavaScript">demosthenes.info</a>
+
+    </center>
+</body>
+<script type="text/javascript">
+    window.onload = function() {
+        var links = [
+            'http://quant.stackexchange.com/',
+            'http://datascience.stackexchange.com/',
+            'http://www.hadoop360.com/',
+            'http://www.analyticbridge.com/',
+            'http://www.bigdatanews.com/',
+            'http://www.r-bloggers.com/',
+            'http://datasciencereport.com/',
+            'http://mydatamine.com/',
+            'http://freakonometrics.hypotheses.org/',
+            'http://www.kaggle.com/',
+            'http://inclass.kaggle.com/',
+            'http://igorsubbotin.blogspot.ru/',
+            'http://blog.revolutionanalytics.com/',
+            'http://habrahabr.ru/company/itinvest/',
+            'http://machinelearningmastery.com/blog/',
+            'http://blog.datumbox.com/',
+            'http://www.pyimagesearch.com/',
+            'http://image-net.org/',
+            'http://scala-lang.org.ua/',
+            'http://flowingdata.com/',
+            'http://simplystatistics.org/',
+            'http://blog.echen.me/',
+            'http://hunch.net/',
+            'http://www.datatau.com/',
+            'http://www.kdnuggets.com/',
+            'http://www.datascienceweekly.org/blog',
+            'http://r-analytics.blogspot.ru/2015/01/r.html#.VM5YfmSUcVN',
+            'http://datareview.info/',
+            'http://www.statosphere.ru/',
+            'http://web-analytic.ru/site-map/'
+        ]
+
+        for (var i = 0; i < links.length; i++) {            
+            $( ".board" ).append( '<a href="' + links[i] + '"><img class="overlay" alt="' + links[i] + '" src="http://free.pagepeeker.com/v2/thumbs.php?size=m&url=' + links[i] + '" /></a>');
+        };
+
+        var images = document.querySelectorAll( "#autocaption img" );
+        var L = images.length;
+        var fig = document.createElement('figure');
+
+        while (L) {
+            var temp = fig.cloneNode(false);
+            var who = images[--L];
+            var caption = who.getAttribute("alt");
+            who.parentNode.insertBefore(temp, who);
+            content = document.createElement( 'figcaption' );
+            content.innerHTML = caption;
+            temp.appendChild(who);
+            temp.appendChild(content);
+        }
+    }
+</script>
+</html>
