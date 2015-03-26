@@ -55,11 +55,11 @@
                     
                     var open = '<td ' + idattr + style + '>'
                     // if (i == 0) open = open + '<b>'
-                    if (i == 0) open = '<th>'
+                    if (i == 0) open = '<th>' + idattr + style + '>'
                     
                     var close = '</td>'
                     // if (i == 0) close = '</b>' + close
-                    if (i == 0) close = '</th>
+                    if (i == 0) close = '</th>'
 
                     if (parts[j] == "MISSING") {
                         open = open + "<font color='#AD0000'><b>"
